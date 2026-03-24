@@ -1,0 +1,218 @@
+Build a **modern, production-ready web application using CesiumJS** for visualizing and processing KML files related to road infrastructure.
+
+---
+
+# 🎯 Application Goal
+
+Create a **GIS web tool** where users can:
+
+1. Upload a `.kml` file containing placemarks on roads
+2. Automatically process those placemarks (backend API will handle logic)
+3. Visualize results on a **3D Cesium globe**
+4. Display generated geometries such as:
+
+   * road-aligned lines
+   * rectangles (speed breakers / markings)
+5. Download the processed KML file
+
+---
+
+# 🧱 Tech Stack
+
+Frontend:
+
+* React (with Vite)
+* CesiumJS (latest version)
+* TypeScript
+* TailwindCSS
+
+Optional:
+
+* Zustand or Context API for state management
+* Axios for API calls
+
+---
+
+# 🧭 Core Features
+
+## 1. Cesium Viewer
+
+* Full-screen Cesium globe
+* Default camera focused on India (or user location)
+* Enable:
+
+  * zoom
+  * pan
+  * rotate
+* Add base imagery (Bing or Cesium Ion)
+
+---
+
+## 2. KML Upload
+
+* Drag-and-drop upload area
+* Accept only `.kml`
+* Show uploaded file name
+* Parse KML and display placemarks on Cesium map
+
+---
+
+## 3. Visualization
+
+After upload:
+
+* Plot placemarks as:
+
+  * colored points (blue)
+* When processed:
+
+  * show generated lines (red)
+  * show polygons (yellow transparent)
+* Smooth rendering and updates
+
+---
+
+## 4. Processing Button
+
+Button:
+**"Generate Road Geometry"**
+
+On click:
+
+* Send KML file to backend API
+* Endpoint:
+
+```id="api_endpoint"
+POST /process-kml
+```
+
+* Show loading spinner
+
+---
+
+## 5. Display Results
+
+After API response:
+
+* Render:
+
+  * snapped points
+  * aligned lines
+  * polygons
+* Zoom camera to processed region
+
+---
+
+## 6. Download Output
+
+Button:
+
+**"Download Processed KML"**
+
+* Trigger download from API response
+
+---
+
+## 7. UI Layout
+
+Create a clean dashboard layout:
+
+### Left Panel (Controls)
+
+* Upload section
+* Parameters:
+
+  * Rectangle length
+  * Rectangle width
+  * Strip count
+* Generate button
+* Download button
+
+### Main Panel
+
+* Cesium Viewer (full height)
+
+---
+
+## 8. Styling
+
+* Modern UI (SaaS style)
+* Rounded cards
+* Soft shadows
+* Gradient buttons (blue → purple)
+* Responsive design
+
+---
+
+## 9. Component Structure
+
+Create reusable components:
+
+* `CesiumViewer.tsx`
+* `KMLUploader.tsx`
+* `ControlPanel.tsx`
+* `MapLayers.tsx`
+* `DownloadButton.tsx`
+
+---
+
+## 10. Cesium Integration Details
+
+* Use `Viewer` from Cesium
+* Load KML using:
+
+```id="cesium_kml"
+Cesium.KmlDataSource.load()
+```
+
+* Add entities dynamically:
+
+  * `viewer.entities.add()`
+* Use:
+
+  * `PolylineGraphics` for lines
+  * `PolygonGraphics` for polygons
+
+---
+
+## 11. UX Enhancements
+
+* Loading indicators
+* Toast notifications (success/error)
+* Disable buttons until upload is complete
+* Smooth transitions
+
+---
+
+## 12. Performance
+
+* Handle 100–500 placemarks efficiently
+* Avoid re-rendering Cesium viewer unnecessarily
+* Use memoization where needed
+
+---
+
+# 🚀 Expected Output
+
+Generate a **fully working React + Cesium app** that:
+
+✔ loads KML
+✔ displays placemarks
+✔ calls backend API
+✔ renders processed geometries
+✔ allows downloading results
+
+---
+
+# 🧠 Important Notes
+
+* Do NOT mock Cesium — use real CesiumJS
+* Ensure correct coordinate handling (lon, lat)
+* Keep code modular and production-ready
+* No placeholder UI — build real components
+
+---
+
+# 🎯 Goal
+
+Deliver a **professional GIS web application prototype** for road engineering workflows using Cesium.
